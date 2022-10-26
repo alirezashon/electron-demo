@@ -1,5 +1,5 @@
 # mobin-net-desktop-demo
-desktop output (Electron Forge).
+PC App(Electron Forge).
 
 This project is just a prototype to present to the customer and its front end is written with raw HTML,
 if you are looking to develop a desktop application, you can go to the document https://www.electronjs.org/docs/latest .
