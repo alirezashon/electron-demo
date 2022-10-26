@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title>mobin-net</title>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <link rel="styleSheet" href="./index.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">    
+        <script type='text/javascript'>
+    
+          var map, infobox;
+      
+          function GetMap() {
+              map = new Microsoft.Maps.Map('#myMap', {
+                  center: new Microsoft.Maps.Location(35.7676063553441, 51.39864254931497),
+                  zoom: 15
+      
+              });
+      
+              //Create an infobox at the center of the map but don't show it.
+              infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+                  visible: false
+              });
+      
+              //Assign the infobox to a map instance.
+              infobox.setMap(map);
+      
+              //Create a pushpin at a random location in the map bounds.
+              var randomLocation = Microsoft.Maps.TestDataGenerator.getLocations(1, map.getBounds());
+              var pin = new Microsoft.Maps.Pushpin(randomLocation);
+      
+              //Store some metadata with the pushpin.
+              pin.metadata = {
+                 description : '<div style="margin-bottom:13px"><img src="./images/logo.jpg" align="left" class="profile-on-map"/><a class="name-on-map">امیرحسین فروتنیان</a></div> <div > <a class="ticket-count">  تیکت موجود ۴</a></div> <a href="./technician-information.html" class="more-data"> جزئیات</a>',    
+              };
+      
+              //Add a click event handler to the pushpin.
+              Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
+      
+              //Add pushpin to the map.
+              map.entities.push(pin);
+          }
+      
+          function pushpinClicked(e) {
+              //Make sure the infobox has metadata to display.
+              if (e.target.metadata) {
+                  //Set the infobox options with the metadata of the pushpin.
+                  infobox.setOptions({
+                      location: e.target.getLocation(),
+                      title: e.target.metadata.title,
+                      description: e.target.metadata.description,
+                      visible: true
+                  });
+              }
+          }
+      
+          </script>
+          <style>
+              /* CSS styles used by custom infobox template */
+              .profile-on-map{ margin-right:5px; width:44px;  height:44px; border: solid #04884b 1px; border-radius: 100px;}
+              .name-on-map {  font-family: Tanha;   color:#04884b;  }
+              .more-data{ text-decoration:none; background-color: #04884b; color: aliceblue; padding:0px 4px;  border-radius: 15px;}
+              .ticket-count{width: 100%;}
+          </style>
+          <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AkRfb75WTat5KTJVX5QtJvNJKW7fPr6EGVMkTPLSTrot0fD6mzW3BMpVh1tkkjWN' async defer></script>
+          </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navigation">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item top-nav-items">
+                    <a class="nav-link" href="./index.html">تیکتینگ</a>
+                  </li>
+                  <li class="nav-item top-nav-items">
+                    <a class="nav-link text-success" aria-current="page" href="./technician.html">کارشناسان</a>
+                  </li>
+                  <li class="nav-item top-nav-items">
+                    <a class="nav-link" href="./chat.html">گفتگو</a>
+                  </li>
+                  <li class="nav-item top-nav-items">
+                    <a class="nav-link" href="./archive.html">بایگانی</a>
+                  </li>
+                  <li class="nav-item top-nav-items ">
+                    <a class="nav-link " href="./anformatic.html">انفورماتیک</a>
+                  </li>
+                </ul>
+              </div>
+              <img src="./images/logo.jpg" class="logo"/>
+      
+            </div>
+          </nav>
+      
+          <!--نقشه-->
+        <div id='printoutPanel'></div>
+        <div id='myMap' style='width: 100vw; height: 80vh;'></div>
+        
+
+
+     
+    </body>
+</html>
